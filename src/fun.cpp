@@ -5,13 +5,13 @@ unsigned int faStr1(const char *str) {
     int ans = 0;
     bool flag = true;
     bool cond = false;
-    size_t i = 0;
+    int i = 0;
     while (str[i] != '\0') {
     if (str[i] == ' ') {
         ans += (flag * cond);
         flag = true;
         cond = false;
-    } else{
+    } else {
         if (str[i] != ' ') cond = true;
         if ('0' <= str[i] && str[i] <= '9') flag = false;
     }
@@ -25,21 +25,19 @@ unsigned int faStr2(const char *str) {
     int ans = 0;
     bool flag = false;
     bool cond = true;
-    size_t i = 0;
+    int i = 0;
     while (str[i] != '\0') {
         if (str[i] == ' ') {
             ans += (flag * cond);
             flag = false;
             cond = true;
-        }
-        else {
-            if (flag == false && cond == true && 'A' <= str[i] && str[i] <= 'Z') {
+        } else {
+            bool upper_flag = ('A' <= str[i] && str[i] <= 'Z');
+            if (flag == false && cond == true && upper_flag) {
                 flag = true;
-            }
-            else if (flag == false && cond == true){
+            } else if (flag == false && cond == true) {
                 cond = false;
-            }
-            else if (cond == true && (str[i] < 'a' || 'z' < str[i])) {
+            } else if (cond == true && (str[i] < 'a' || 'z' < str[i])) {
                 cond = false;
             }
         }
@@ -53,14 +51,13 @@ unsigned int faStr3(const char *str) {
     int ans = 0;
     int word_len = 0;
     int word_cnt = 0;
-    size_t i = 0;
+    int i = 0;
     while (str[i] != '\0') {
         if (str[i] == ' ') {
             ans += word_len;
             word_cnt += (word_len > 0);
             word_len = 0;
-        }
-        else {
+        } else {
             if (str[i] != ' ') word_len++;
         }
         ++i;
