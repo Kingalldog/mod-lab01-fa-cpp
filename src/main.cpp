@@ -4,6 +4,6 @@
 
 int main() {
     int f = faStr1("GG");
-    std::cout<<f<<std::endl;
+    std::cout << f << std::endl;
     return 0;
 }
